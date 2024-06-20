@@ -1,7 +1,7 @@
-import { transporter } from "../configs/nodemailerConfig.js";
+import { transporter } from "../../configs/nodemailerConfig.js";
 import dotenv from "dotenv";
 dotenv.config();
-import { ContactValid } from "../validation/sendContact.js";
+import { ContactValid } from "../../validation/sendContact.js";
 
 export const sendContact = async (req, res) => {
   try {
@@ -18,26 +18,26 @@ export const sendContact = async (req, res) => {
       to: process.env.GMAIL_USER,
       subject: `New Contact from ${formData.name}`,
       html: `
-      <div><span style="font-weight:600;font-size:18px">Name</span>: ${
+      <div><span style="font-weight:600;font-size:16px">Name: </span>${
         formData.name
       }</div>
-      <div><span style="font-weight:600;font-size:18px"> Email</span>: ${
+      <div><span style="font-weight:600;font-size:16px"> Email: </span> ${
         formData.email
       }</div>
       ${
         formData.phone
-          ? ` <div> <span style="font-weight:600;font-size:18px">
-            Phone</span>: ${formData.phone}</div>`
+          ? ` <div> <span style="font-weight:600;font-size:16px">
+            Phone: </span> ${formData.phone}</div>`
           : ""
       }
-       <div><span style="font-weight:600;font-size:18px">Message</span>: ${
+       <div><span style="font-weight:600;font-size:16px">Message: </span>${
          formData.message
        }</div>
-      <div> <span style="font-weight:600;font-size:18px">Budget</span>: ${
+      <div> <span style="font-weight:600;font-size:16px">Budget: </span>${
         formData.budget
       }</div>
-       <div style="font-weight:600;font-size:20px"> If you need to respond, please reply to this email.</div>
-       <div style="font-weight:600;font-size:20px">Please note that this email was sent from a web application. If you are not expecting this, please disregard this message.</div>
+       <div style="font-weight:600"> If you need to respond, please reply to this email.</div>
+       <div style="font-weight:600">Please note that this email was sent from a web application. If you are not expecting this, please disregard this message.</div>
     `,
     };
 

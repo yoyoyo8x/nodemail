@@ -13,13 +13,13 @@ export const ContactValid = Joi.object({
     .messages({ "string.empty": "Message is required" }),
   phone: Joi.string()
     .regex(/^[0-9]{10}$/)
-    .messages({ "string.empty": "Invalid phone number" }),
+    .messages({ "string.regrex": "Invalid phone number" }),
   email: Joi.string().email().required().messages({
     "string.empty": "Display name cannot be empty",
     "string.email": "Invalid email",
   }),
-  budget: Joi.string()
+  budget: Joi.number()
     .min(3)
     .required()
-    .messages({ "string.empty": "Budget is required" }),
+    .messages({ "number.empty": "Budget is required" }),
 });

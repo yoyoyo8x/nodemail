@@ -6,12 +6,19 @@ import { JobValid } from "../../validation/sendCV.js";
 export const sendCV = async (req, res) => {
   try {
     const formData = req.body;
-    console.log(req.files);
     const { error } = JobValid.validate(formData);
     if (error) {
       const errors = error.details.map((err) => err.message);
       return res.status(400).json({
         message: errors,
+      });
+    }
+    if (
+      req.files?.mimetype !== "application/msword" ||
+      req.files?.mimetype !== "application/pdf"
+    ) {
+      return res.status(400).json({
+        message: "File type error",
       });
     }
     const mailOptions = {

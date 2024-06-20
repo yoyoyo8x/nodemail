@@ -18,22 +18,24 @@ export const sendContact = async (req, res) => {
       to: process.env.GMAIL_USER,
       subject: `New Contact from ${formData.name}`,
       html: `
-      <div style="font-weight:600;font-size:18px">Name</div>: ${formData.name}
-      <div style="font-weight:600;font-size:18px"> Email</div>: ${
+      <div><span style="font-weight:600;font-size:18px">Name</span>: ${
+        formData.name
+      }</div>
+      <div><span style="font-weight:600;font-size:18px"> Email</span>: ${
         formData.email
-      }
+      }</div>
       ${
         formData.phone
-          ? `  <div style="font-weight:600;font-size:18px">
-            Phone</div>: ${formData.phone}`
+          ? ` <div> <span style="font-weight:600;font-size:18px">
+            Phone</span>: ${formData.phone}</div>`
           : ""
       }
-       <div style="font-weight:600;font-size:18px">Message</div>: ${
+       <div><span style="font-weight:600;font-size:18px">Message</span>: ${
          formData.message
-       }
-       <div style="font-weight:600;font-size:18px">Budget</div>: ${
-         formData.budget
-       }
+       }</div>
+      <div> <span style="font-weight:600;font-size:18px">Budget</span>: ${
+        formData.budget
+      }</div>
        <div style="font-weight:600;font-size:20px"> If you need to respond, please reply to this email.</div>
        <div style="font-weight:600;font-size:20px">Please note that this email was sent from a web application. If you are not expecting this, please disregard this message.</div>
     `,

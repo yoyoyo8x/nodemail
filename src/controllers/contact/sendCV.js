@@ -13,14 +13,6 @@ export const sendCV = async (req, res) => {
         message: errors,
       });
     }
-    if (
-      req.files?.mimetype !== "application/msword" ||
-      req.files?.mimetype !== "application/pdf"
-    ) {
-      return res.status(400).json({
-        message: "File type error",
-      });
-    }
     const mailOptions = {
       from: formData.name,
       to: process.env.GMAIL_USER,
